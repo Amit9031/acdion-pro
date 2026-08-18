@@ -1,98 +1,74 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { useReveal } from '../../hooks/useReveal';
-import { ShieldCheck, Cpu, Target, Moon, Smartphone, Zap } from 'lucide-react';
 
 export default function Features() {
   const [ref, isVisible] = useReveal();
 
-  const features = [
+  const specs = [
     {
-      icon: Cpu,
-      title: 'Resilient Signal Ingestion',
-      description: 'Parses job specifications and status signals cleanly with rate-limit aware fallback pipelines.',
-      tag: 'ARCHITECTURE'
+      code: 'SPEC-01',
+      title: 'Resilient Ingestion',
+      desc: 'Parses job signals via rate-limit aware fallback pipelines without triggering platform bot detection.'
     },
     {
-      icon: Target,
-      title: 'Urgency Priority Engine',
-      description: 'Algorithmically ranks your active applications by stage timeline, interview countdowns, and idle follow-up windows.',
-      tag: 'ALGORITHM'
+      code: 'SPEC-02',
+      title: 'Priority Algorithm',
+      desc: 'Ranks active applications algorithmically by stage deadlines, idle timers, and response probability.'
     },
     {
-      icon: Zap,
-      title: 'One-Click Action Triggers',
-      description: 'Open dedicated prep checklists, follow-up draft prompts, and recruiter context instantly without context switching.',
-      tag: 'WORKFLOW'
+      code: 'SPEC-03',
+      title: 'Prescriptive Action Triggers',
+      desc: 'Generates single clear next actions per role, eliminating decision fatigue during high-volume searches.'
     },
     {
-      icon: Moon,
-      title: 'Native Dark Mode Support',
-      description: 'Flawless dark mode implementation built with accessible contrast and custom CSS color variables.',
-      tag: 'DESIGN CRAFT'
+      code: 'SPEC-04',
+      title: 'Native Dark Theme',
+      desc: 'Custom color variables engineered for WCAG AA contrast standards without glowing distractors.'
     },
     {
-      icon: Smartphone,
+      code: 'SPEC-05',
       title: 'Strict Responsive Engine',
-      description: 'Tested from 390px mobile viewports up to 1440px+ ultra-wide desktop monitors without horizontal spill.',
-      tag: 'RESPONSIVE'
+      desc: 'Validated from 390px mobile viewports to 1440px+ ultra-wide desktop monitors without horizontal overflow.'
     },
     {
-      icon: ShieldCheck,
-      title: 'Honest Engineering Polish',
-      description: 'Zero fake metric counters, zero fabricated testimonials. Built strictly around real candidate workflows.',
-      tag: 'HONESTY'
+      code: 'SPEC-06',
+      title: 'Zero Fake Guardrail',
+      desc: 'Built with 100% honest product copy. Zero fake testimonials, zero invented client logos.'
     }
   ];
 
   return (
-    <section id="features" ref={ref} className="py-16 md:py-24 bg-slate-50 dark:bg-[#0B0F17] transition-colors border-t border-slate-200 dark:border-slate-800">
-      <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+    <section id="features" ref={ref} className="py-16 md:py-24 border-b border-[#E8E5DA] dark:border-[#282A30] bg-[#FAF9F5] dark:bg-[#111215]">
+      <div className={`max-w-6xl mx-auto px-4 sm:px-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-xs font-mono font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-2 block">
-            BUILT LIKE WE MEAN IT
+        {/* Header */}
+        <div className="max-w-xl mb-12">
+          <span className="font-mono text-xs font-bold uppercase tracking-widest text-terracotta-500 mb-2 block">
+            TECHNICAL DOSSIER
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Engineered for High-Signal Job Seekers
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#18181B] dark:text-[#F4F2EB] tracking-tight">
+            Engineered Specifications
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 mt-3">
-            Every component is crafted for speed, focus, and clarity. No bloatware, no fluff.
-          </p>
         </div>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feat, idx) => {
-            const IconComponent = feat.icon;
-            return (
-              <motion.div 
-                key={idx}
-                whileHover={{ y: -4, scale: 1.01 }}
-                className="group rounded-2xl p-6 glass-card shadow-sm hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-200 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">
-                      <IconComponent className="w-5 h-5" />
-                    </div>
-                    <span className="font-mono text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">
-                      {feat.tag}
-                    </span>
-                  </div>
-
-                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    {feat.title}
-                  </h3>
-
-                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                    {feat.description}
-                  </p>
-                </div>
-              </motion.div>
-            );
-          })}
+        {/* Specs Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {specs.map((item, idx) => (
+            <div 
+              key={idx}
+              className="p-5 rounded-xl paper-card font-mono text-xs"
+            >
+              <div className="text-[10px] text-terracotta-500 font-bold mb-2">
+                {item.code}
+              </div>
+              <h3 className="font-serif font-bold text-lg text-[#18181B] dark:text-[#F4F2EB] mb-1">
+                {item.title}
+              </h3>
+              <p className="text-zinc-600 dark:text-zinc-400 font-sans leading-relaxed text-xs">
+                {item.desc}
+              </p>
+            </div>
+          ))}
         </div>
 
       </div>
