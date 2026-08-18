@@ -1,91 +1,77 @@
 import React from 'react';
 import { useReveal } from '../../hooks/useReveal';
-import { AlertTriangle, CheckCircle, XCircle, ArrowRight } from 'lucide-react';
 
 export default function Problem() {
   const [ref, isVisible] = useReveal();
 
   return (
-    <section id="problem" ref={ref} className="py-16 md:py-24 transition-colors">
-      <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+    <section id="problem" ref={ref} className="py-16 md:py-24 border-b border-zinc-200 dark:border-zinc-800">
+      <div className={`max-w-6xl mx-auto px-4 sm:px-6 transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-xs font-mono font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-3">
-            THE REALITY OF MODERN JOB SEARCHING
+        <div className="max-w-2xl mb-12">
+          <div className="font-mono text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">
+            THE SYSTEM FAILURES
+          </div>
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-zinc-900 dark:text-white tracking-tight uppercase">
+            Why Spreadsheets & 40-Tab Setups Burn Opportunities
           </h2>
-          <h3 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-            Why Spreadsheet & 40-Tab Systems Fail Engineers
-          </h3>
-          <p className="text-slate-600 dark:text-slate-400 text-base mt-4">
-            Most job searches don't fail from a lack of qualified roles. They fail because high-value opportunities slip through the cracks of a noisy, fragmented process.
+          <p className="text-zinc-600 dark:text-zinc-400 text-sm sm:text-base mt-3 leading-relaxed">
+            Most technical job searches don't fail from a lack of qualified roles. They fail because high-value opportunities decay inside noisy, unprioritized browser tabs.
           </p>
         </div>
 
-        {/* Comparison Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+        {/* Side-by-Side Comparison */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           
           {/* Old Way */}
-          <div className="rounded-2xl p-6 sm:p-8 bg-red-50/50 dark:bg-red-950/20 border border-red-200/80 dark:border-red-900/40 relative">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-900/60 flex items-center justify-center text-red-600 dark:text-red-400 font-bold">
-                <XCircle className="w-6 h-6" />
-              </div>
-              <div>
-                <h4 className="text-lg font-bold text-slate-900 dark:text-white">
-                  The 40-Tab Chaos (Traditional Way)
-                </h4>
-                <p className="text-xs text-red-600 dark:text-red-400 font-mono">Reacting instead of prioritizing</p>
-              </div>
+          <div className="rounded-xl p-6 bg-zinc-50 dark:bg-[#121215] border border-zinc-200 dark:border-zinc-800 font-mono text-xs">
+            <div className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider mb-4 pb-3 border-b border-zinc-200 dark:border-zinc-800 flex justify-between">
+              <span>01 / TRADITIONAL TAB CHAOS</span>
+              <span className="text-zinc-400">HIGH FRICTION</span>
             </div>
 
-            <ul className="space-y-4 text-sm text-slate-700 dark:text-slate-300">
-              <li className="flex items-start gap-3">
-                <XCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
-                <span><strong className="text-slate-900 dark:text-white">Forgotten Follow-ups:</strong> 6 days pass after an onsite interview because it was buried in your Notion table.</span>
+            <ul className="space-y-4 text-zinc-600 dark:text-zinc-400">
+              <li className="flex flex-col gap-1">
+                <span className="font-bold text-zinc-900 dark:text-zinc-200">• Forgotten Follow-ups</span>
+                <span className="text-[11px] leading-relaxed">6 days elapse after an onsite interview because notes were buried inside a forgotten Notion row.</span>
               </li>
-              <li className="flex items-start gap-3">
-                <XCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
-                <span><strong className="text-slate-900 dark:text-white">Context Switching Fatigue:</strong> Re-reading notes from scratch 15 minutes before an interview call.</span>
+              <li className="flex flex-col gap-1">
+                <span className="font-bold text-zinc-900 dark:text-zinc-200">• Context Switching Overhead</span>
+                <span className="text-[11px] leading-relaxed">Re-reading company blog posts and interview notes 10 minutes before a technical screen call.</span>
               </li>
-              <li className="flex items-start gap-3">
-                <XCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
-                <span><strong className="text-slate-900 dark:text-white">Spreadsheet Rot:</strong> Outdated statuses, duplicate rows, and no clear answer to "What should I do right now?"</span>
+              <li className="flex flex-col gap-1">
+                <span className="font-bold text-zinc-900 dark:text-zinc-200">• Spreadsheet Rot</span>
+                <span className="text-[11px] leading-relaxed">Outdated application statuses and zero clarity on what specific action to execute next.</span>
               </li>
             </ul>
           </div>
 
           {/* SignalDesk Way */}
-          <div className="rounded-2xl p-6 sm:p-8 bg-blue-50/50 dark:bg-blue-950/20 border border-blue-200/80 dark:border-blue-800/60 relative">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-blue-100 dark:bg-blue-900/60 flex items-center justify-center text-blue-600 dark:text-blue-400 font-bold">
-                <CheckCircle className="w-6 h-6" />
-              </div>
-              <div>
-                <h4 className="text-lg font-bold text-slate-900 dark:text-white">
-                  The SignalDesk Focus Queue
-                </h4>
-                <p className="text-xs text-blue-600 dark:text-blue-400 font-mono">Single-task focus, zero friction</p>
-              </div>
+          <div className="rounded-xl p-6 bg-white dark:bg-[#121215] border border-zinc-900 dark:border-zinc-100 font-mono text-xs shadow-sm">
+            <div className="text-xs font-bold text-zinc-900 dark:text-white uppercase tracking-wider mb-4 pb-3 border-b border-zinc-200 dark:border-zinc-800 flex justify-between">
+              <span>02 / SIGNALDESK FOCUS QUEUE</span>
+              <span className="text-emerald-500 font-bold">SINGLE TASK</span>
             </div>
 
-            <ul className="space-y-4 text-sm text-slate-700 dark:text-slate-300">
-              <li className="flex items-start gap-3">
-                <CheckCircle className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
-                <span><strong className="text-slate-900 dark:text-white">Automated Priority Scoring:</strong> Roles automatically bubble up based on interview dates and idle response timers.</span>
+            <ul className="space-y-4 text-zinc-600 dark:text-zinc-400">
+              <li className="flex flex-col gap-1">
+                <span className="font-bold text-zinc-900 dark:text-zinc-100">• Automated Priority Scoring</span>
+                <span className="text-[11px] leading-relaxed">Roles automatically surface based on upcoming interview dates and idle response timers.</span>
               </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
-                <span><strong className="text-slate-900 dark:text-white">Single Clear Next Action:</strong> Every role has exactly one prescribed step so you never stare at your screen wondering what to do.</span>
+              <li className="flex flex-col gap-1">
+                <span className="font-bold text-zinc-900 dark:text-zinc-100">• Prescriptive Action Cards</span>
+                <span className="text-[11px] leading-relaxed">Every role has exactly one prescribed next step so you never stare at your screen wondering what to do.</span>
               </li>
-              <li className="flex items-start gap-3">
-                <CheckCircle className="w-4 h-4 text-blue-500 shrink-0 mt-0.5" />
-                <span><strong className="text-slate-900 dark:text-white">Context On Demand:</strong> Access interview notes, recruiter hints, and prep checklists in one click.</span>
+              <li className="flex flex-col gap-1">
+                <span className="font-bold text-zinc-900 dark:text-zinc-100">• Instant Context Drawers</span>
+                <span className="text-[11px] leading-relaxed">Access recruiter notes, interview checklists, and submission timelines in one click.</span>
               </li>
             </ul>
           </div>
 
         </div>
+
       </div>
     </section>
   );

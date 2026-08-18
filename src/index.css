@@ -3,31 +3,44 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --bg-base: #fafafa;
+    --bg-surface: #ffffff;
+    --border-color: #e4e4e7;
+    --text-main: #09090b;
+    --text-muted: #71717a;
+  }
+
+  .dark {
+    --bg-base: #09090b;
+    --bg-surface: #121215;
+    --border-color: #27272a;
+    --text-main: #f4f4f5;
+    --text-muted: #a1a1aa;
+  }
+
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-base);
+    color: var(--text-main);
     overflow-x: hidden;
+    letter-spacing: -0.01em;
   }
 }
 
-/* Glassmorphism helpers */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+/* Custom crisp border utilities */
+.border-subtle {
+  border-color: var(--border-color);
 }
 
-.dark .glass-panel {
-  background: rgba(19, 25, 38, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(40, 52, 77, 0.6);
+.bg-surface {
+  background-color: var(--bg-surface);
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -35,44 +48,19 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.3);
-  border-radius: 9999px;
+  background: #a1a1aa33;
+  border-radius: 4px;
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: rgba(51, 65, 85, 0.5);
+  background: #27272a;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.5);
+  background: #71717a66;
 }
 
-/* Subtle pulse animation for status indicator */
-@keyframes status-pulse {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.6;
-    transform: scale(1.15);
-  }
-}
-
-.animate-status-pulse {
-  animation: status-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-/* Grid background pattern */
-.bg-grid-pattern {
-  background-size: 32px 32px;
-  background-image: 
-    linear-gradient(to right, rgba(226, 232, 240, 0.5) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(226, 232, 240, 0.5) 1px, transparent 1px);
-}
-
-.dark .bg-grid-pattern {
-  background-image: 
-    linear-gradient(to right, rgba(30, 41, 59, 0.3) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(30, 41, 59, 0.3) 1px, transparent 1px);
+/* Monospace font utility */
+.font-mono-code {
+  font-family: 'JetBrains Mono', monospace;
 }

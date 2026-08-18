@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sun, Moon, Sparkles, Terminal, ArrowRight } from 'lucide-react';
+import { Sun, Moon, ArrowRight } from 'lucide-react';
 
 export default function Navbar({ darkMode, setDarkMode, onTriggerEasterEgg }) {
   const [logoClicks, setLogoClicks] = useState(0);
@@ -21,83 +21,72 @@ export default function Navbar({ darkMode, setDarkMode, onTriggerEasterEgg }) {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full glass-panel border-b border-slate-200/80 dark:border-slate-800/80 transition-colors duration-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <header className="sticky top-0 z-50 w-full bg-white/90 dark:bg-[#09090B]/90 backdrop-blur-md border-b border-zinc-200 dark:border-zinc-800 transition-colors">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
+        
         {/* Brand Logo */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-6">
           <button 
             onClick={handleLogoClick}
-            className="flex items-center gap-2 group text-left focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg p-1 transition-transform active:scale-95"
-            title="Click 4 times for Secret Developer Console"
+            className="flex items-center gap-2.5 text-left focus:outline-none group"
+            title="Click 4 times to unlock dev console"
           >
-            <div className="w-8 h-8 rounded-lg bg-blue-600 dark:bg-blue-500 flex items-center justify-center text-white font-mono font-bold shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform">
-              📡
+            <div className="w-6 h-6 rounded bg-zinc-900 dark:bg-zinc-100 flex items-center justify-center text-white dark:text-zinc-900 font-mono text-xs font-bold tracking-tighter group-hover:bg-blue-600 dark:group-hover:bg-blue-500 dark:group-hover:text-white transition-colors">
+              SD
             </div>
-            <div className="flex flex-col">
-              <span className="font-bold text-slate-900 dark:text-white tracking-tight text-lg leading-tight flex items-center gap-1.5">
-                SignalDesk
-                <span className="text-[10px] uppercase font-mono px-1.5 py-0.5 rounded bg-blue-100 text-blue-700 dark:bg-blue-950/80 dark:text-blue-400 font-semibold border border-blue-200 dark:border-blue-800/60">
-                  PRO
-                </span>
-              </span>
-              <span className="text-[10px] text-slate-500 dark:text-slate-400 hidden sm:inline">
-                Job Search Focus Engine
-              </span>
-            </div>
+            <span className="font-semibold text-zinc-900 dark:text-zinc-100 text-sm tracking-tight">
+              SignalDesk
+            </span>
           </button>
+
+          {/* Desktop Nav Links */}
+          <nav className="hidden md:flex items-center gap-6 text-xs font-medium text-zinc-500 dark:text-zinc-400">
+            <button 
+              onClick={() => scrollToSection('problem')} 
+              className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+            >
+              Why SignalDesk
+            </button>
+            <button 
+              onClick={() => scrollToSection('workspace')} 
+              className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+            >
+              Workspace Demo
+            </button>
+            <button 
+              onClick={() => scrollToSection('features')} 
+              className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+            >
+              Architecture
+            </button>
+            <button 
+              onClick={() => scrollToSection('decisions')} 
+              className="hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors font-mono text-[11px]"
+            >
+              DECISIONS.md
+            </button>
+          </nav>
         </div>
 
-        {/* Navigation Links */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-300">
-          <button 
-            onClick={() => scrollToSection('problem')} 
-            className="hover:text-blue-600 dark:hover:text-white transition-colors"
-          >
-            Why SignalDesk
-          </button>
-          <button 
-            onClick={() => scrollToSection('workspace')} 
-            className="hover:text-blue-600 dark:hover:text-white transition-colors flex items-center gap-1.5"
-          >
-            <Sparkles className="w-3.5 h-3.5 text-blue-500" />
-            Interactive Demo
-          </button>
-          <button 
-            onClick={() => scrollToSection('features')} 
-            className="hover:text-blue-600 dark:hover:text-white transition-colors"
-          >
-            Features
-          </button>
-          <button 
-            onClick={() => scrollToSection('decisions')} 
-            className="hover:text-blue-600 dark:hover:text-white transition-colors flex items-center gap-1 text-slate-500 dark:text-slate-400 font-mono text-xs"
-          >
-            <Terminal className="w-3.5 h-3.5" />
-            DECISIONS.md
-          </button>
-        </nav>
-
-        {/* Right Action Controls */}
+        {/* Right Controls */}
         <div className="flex items-center gap-3">
-          {/* Dark Mode Toggle */}
           <button
             onClick={() => setDarkMode(!darkMode)}
-            className="p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="p-1.5 rounded-md text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
             aria-label="Toggle Theme"
-            title={darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
           >
-            {darkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
+            {darkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
           </button>
 
-          {/* Primary CTA */}
           <button
             onClick={() => scrollToSection('workspace')}
-            className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow-sm hover:shadow-glow transition-all active:scale-95"
+            className="px-3 py-1.5 rounded-md bg-zinc-900 hover:bg-zinc-800 dark:bg-zinc-100 dark:hover:bg-white text-white dark:text-zinc-900 font-medium text-xs transition-colors flex items-center gap-1.5"
           >
-            Try Interactive Demo
-            <ArrowRight className="w-4 h-4" />
+            Try Workspace
+            <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
+
       </div>
     </header>
   );
