@@ -13,26 +13,26 @@ export default function FinalCTA() {
   };
 
   return (
-    <section className="py-20 md:py-28 border-b border-[#28282D] bg-[#0D0D0E]">
+    <section className="py-20 md:py-28 border-b border-[#E2E2E2] bg-[#FAFAFA] text-[#111111]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
         
-        <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#CCFF00] mb-3 block">
+        <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#222222] px-2.5 py-1 rounded bg-[#EAEAEA] border border-[#D5D5D5] inline-block mb-3">
           EARLY ACCESS
         </span>
 
-        <h2 className="font-syne text-4xl sm:text-5xl font-extrabold text-white tracking-tight uppercase leading-tight mb-4">
+        <h2 className="font-extrabold text-4xl sm:text-5xl text-[#111111] tracking-tight uppercase leading-tight mb-4">
           Know what to do next. <br />
-          <span className="text-[#CCFF00]">Every single morning.</span>
+          <span className="text-neutral-500">Every single morning.</span>
         </h2>
 
-        <p className="text-zinc-400 text-sm sm:text-base max-w-xl mx-auto mb-8 leading-relaxed font-sans">
+        <p className="text-neutral-600 text-sm sm:text-base max-w-xl mx-auto mb-8 leading-relaxed font-sans">
           Experience a clean, focused queue built for high-performance engineers and product creators.
         </p>
 
         {/* Form */}
         <div className="max-w-md mx-auto mb-8">
           {submitted ? (
-            <div className="p-4 rounded-full bg-[#CCFF00] text-black font-mono text-xs font-bold flex items-center justify-center gap-2 shadow-lg">
+            <div className="p-4 rounded-full bg-[#111111] text-[#CCFF00] font-mono text-xs font-bold flex items-center justify-center gap-2 shadow-lg">
               <CheckCircle2 className="w-4 h-4" />
               <span>Access registered. Test the workspace above.</span>
             </div>
@@ -44,11 +44,11 @@ export default function FinalCTA() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter candidate email..."
-                className="px-4 py-3 rounded-full aww-card text-white placeholder-zinc-500 focus:outline-none focus:border-[#CCFF00] flex-1 text-xs font-mono"
+                className="px-4 py-3 rounded-full bg-[#EAEAEA] border border-[#D5D5D5] text-[#111111] placeholder-neutral-500 focus:outline-none focus:border-[#111111] flex-1 text-xs font-mono"
               />
               <button
                 type="submit"
-                className="px-6 py-3 rounded-full bg-[#CCFF00] text-black font-mono text-xs font-extrabold uppercase hover:bg-white transition-colors flex items-center justify-center gap-1.5 shrink-0 shadow-lg shadow-[#CCFF00]/20"
+                className="px-6 py-3 rounded-full bg-[#111111] text-white font-mono text-xs font-extrabold uppercase hover:bg-neutral-800 transition-colors flex items-center justify-center gap-1.5 shrink-0 shadow-lg"
               >
                 <span>Request Access</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -57,7 +57,7 @@ export default function FinalCTA() {
           )}
         </div>
 
-        <div className="text-xs font-mono text-zinc-500">
+        <div className="text-xs font-mono text-neutral-500">
           Acdyon Technologies Engineering Challenge Part 2
         </div>
 

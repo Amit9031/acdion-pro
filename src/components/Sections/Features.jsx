@@ -38,33 +38,33 @@ export default function Features() {
   ];
 
   return (
-    <section id="features" ref={ref} className="py-16 md:py-24 border-b border-[#28282D] bg-[#0D0D0E]">
+    <section id="features" ref={ref} className="py-20 md:py-28 bg-[#FAFAFA] text-[#111111] border-b border-[#E2E2E2]">
       <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         
         {/* Header */}
         <div className="max-w-xl mb-12">
-          <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#CCFF00] mb-2 block">
+          <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#222222] px-2.5 py-1 rounded bg-[#EAEAEA] border border-[#D5D5D5] inline-block mb-3">
             TECHNICAL SPECIFICATIONS
           </span>
-          <h2 className="font-syne text-3xl sm:text-4xl font-extrabold text-white tracking-tight uppercase">
+          <h2 className="font-extrabold text-3xl sm:text-5xl text-[#111111] tracking-tight uppercase leading-tight">
             Engineered Specifications
           </h2>
         </div>
 
-        {/* Specs Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {/* Specs Grid - Dark High Contrast Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 font-mono text-xs">
           {specs.map((item, idx) => (
             <div 
               key={idx}
-              className="p-5 rounded-2xl aww-card font-mono text-xs"
+              className="p-5 rounded-2xl bg-[#161618] text-white border border-[#28282D] shadow-xl"
             >
-              <div className="text-[10px] text-[#CCFF00] font-bold mb-2">
+              <div className="text-[10px] text-[#CCFF00] font-extrabold mb-2">
                 {item.code}
               </div>
-              <h3 className="font-syne font-bold text-base text-white mb-1">
+              <h3 className="font-bold text-base text-white font-sans mb-1">
                 {item.title}
               </h3>
-              <p className="text-zinc-400 font-sans leading-relaxed text-xs">
+              <p className="text-neutral-300 font-sans leading-relaxed text-xs">
                 {item.desc}
               </p>
             </div>
