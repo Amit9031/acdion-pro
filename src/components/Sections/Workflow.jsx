@@ -1,5 +1,7 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { useReveal } from '../../hooks/useReveal';
+import { Inbox, Compass, CheckCircle2 } from 'lucide-react';
 
 export default function Workflow() {
   const [ref, isVisible] = useReveal();
@@ -7,53 +9,69 @@ export default function Workflow() {
   const steps = [
     {
       num: '01',
-      title: 'Signal Capture',
-      desc: 'Ingest active applications cleanly. SignalDesk normalizes company names, stage dates, and recruiter contact windows.'
+      icon: Inbox,
+      title: 'Automatic Signal Capture',
+      desc: 'Connect your target roles or job bookmarklets. SignalDesk extracts company names, stage dates, and recruiter contact timelines automatically.'
     },
     {
       num: '02',
-      title: 'Priority Distillation',
-      desc: 'Every morning, SignalDesk scans your saved applications and distills max 3-4 priority actions worth your focus today.'
+      icon: Compass,
+      title: 'Daily Priority Distillation',
+      desc: 'Every morning, SignalDesk scans all saved roles and presents max 3-4 priority actions worth your time today.'
     },
     {
       num: '03',
-      title: 'Execution & Momentum',
-      desc: 'Open action cards to view preparation checklists and follow-up prompts. Mark complete and move forward with clarity.'
+      icon: CheckCircle2,
+      title: 'Execute & Maintain Momentum',
+      desc: 'Click into any action to access custom preparation checklists or follow-up prompts. Mark complete and move forward.'
     }
   ];
 
   return (
-    <section ref={ref} className="py-16 md:py-24 border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-[#09090B]">
-      <div className={`max-w-6xl mx-auto px-4 sm:px-6 transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+    <section className="py-16 md:py-24 bg-white dark:bg-[#0B0F17] transition-colors border-t border-slate-200 dark:border-slate-800">
+      <div ref={ref} className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         
         {/* Header */}
-        <div className="max-w-xl mb-12">
-          <div className="font-mono text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">
-            DAILY HABIT
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-white tracking-tight uppercase">
-            3 Steps to Execution Clarity
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-2 block">
+            THE 3-STEP DAILY HABIT
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            How SignalDesk Replaces Tab Overload
           </h2>
         </div>
 
         {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 font-mono">
-          {steps.map((step, idx) => (
-            <div 
-              key={idx}
-              className="p-6 rounded-lg bg-white dark:bg-[#121215] border border-zinc-200 dark:border-zinc-800"
-            >
-              <div className="text-2xl font-black text-zinc-300 dark:text-zinc-700 mb-4">
-                {step.num}
-              </div>
-              <h3 className="font-bold text-sm text-zinc-900 dark:text-zinc-100 mb-2">
-                {step.title}
-              </h3>
-              <p className="text-xs text-zinc-600 dark:text-zinc-400 font-sans leading-relaxed">
-                {step.desc}
-              </p>
-            </div>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+          {steps.map((step, idx) => {
+            const IconComp = step.icon;
+            return (
+              <motion.div 
+                key={idx}
+                whileHover={{ y: -4 }}
+                className="relative rounded-2xl p-6 glass-card flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="font-mono text-3xl font-extrabold text-blue-500/30 dark:text-blue-400/20">
+                      {step.num}
+                    </span>
+                    <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400">
+                      <IconComp className="w-5 h-5" />
+                    </div>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
+                    {step.title}
+                  </h3>
+
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                    {step.desc}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
       </div>

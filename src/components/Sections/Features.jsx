@@ -1,74 +1,98 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { useReveal } from '../../hooks/useReveal';
+import { ShieldCheck, Cpu, Target, Moon, Smartphone, Zap } from 'lucide-react';
 
 export default function Features() {
   const [ref, isVisible] = useReveal();
 
-  const specs = [
+  const features = [
     {
-      code: 'SPEC-01',
-      title: 'Resilient Ingestion',
-      desc: 'Parses job signals via rate-limit aware fallback pipelines without triggering platform bot detection.'
+      icon: Cpu,
+      title: 'Resilient Signal Ingestion',
+      description: 'Parses job specifications and status signals cleanly with rate-limit aware fallback pipelines.',
+      tag: 'ARCHITECTURE'
     },
     {
-      code: 'SPEC-02',
-      title: 'Priority Algorithm',
-      desc: 'Ranks active applications algorithmically by stage deadlines, idle timers, and response probability.'
+      icon: Target,
+      title: 'Urgency Priority Engine',
+      description: 'Algorithmically ranks your active applications by stage timeline, interview countdowns, and idle follow-up windows.',
+      tag: 'ALGORITHM'
     },
     {
-      code: 'SPEC-03',
-      title: 'Prescriptive Action Triggers',
-      desc: 'Generates single clear next actions per role, eliminating decision fatigue during high-volume searches.'
+      icon: Zap,
+      title: 'One-Click Action Triggers',
+      description: 'Open dedicated prep checklists, follow-up draft prompts, and recruiter context instantly without context switching.',
+      tag: 'WORKFLOW'
     },
     {
-      code: 'SPEC-04',
-      title: 'Native Dark Theme',
-      desc: 'Custom color variables engineered for WCAG AA contrast standards without glowing distractors.'
+      icon: Moon,
+      title: 'Native Dark Mode Support',
+      description: 'Flawless dark mode implementation built with accessible contrast and custom CSS color variables.',
+      tag: 'DESIGN CRAFT'
     },
     {
-      code: 'SPEC-05',
+      icon: Smartphone,
       title: 'Strict Responsive Engine',
-      desc: 'Validated from 390px mobile viewports to 1440px+ ultra-wide desktop monitors without horizontal overflow.'
+      description: 'Tested from 390px mobile viewports up to 1440px+ ultra-wide desktop monitors without horizontal spill.',
+      tag: 'RESPONSIVE'
     },
     {
-      code: 'SPEC-06',
-      title: 'Zero Fake Guardrail',
-      desc: 'Built with 100% honest product copy. Zero fake testimonials, zero invented client logos.'
+      icon: ShieldCheck,
+      title: 'Honest Engineering Polish',
+      description: 'Zero fake metric counters, zero fabricated testimonials. Built strictly around real candidate workflows.',
+      tag: 'HONESTY'
     }
   ];
 
   return (
-    <section id="features" ref={ref} className="py-16 md:py-24 border-b border-zinc-200 dark:border-zinc-800">
-      <div className={`max-w-6xl mx-auto px-4 sm:px-6 transition-all duration-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+    <section id="features" ref={ref} className="py-16 md:py-24 bg-slate-50 dark:bg-[#0B0F17] transition-colors border-t border-slate-200 dark:border-slate-800">
+      <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         
-        {/* Header */}
-        <div className="max-w-xl mb-12">
-          <div className="font-mono text-xs font-semibold text-zinc-500 uppercase tracking-widest mb-2">
-            ENGINEERING SPECIFICATIONS
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-white tracking-tight uppercase">
-            Crafted for High-Signal Candidates
+        {/* Section Header */}
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <span className="text-xs font-mono font-bold uppercase tracking-widest text-blue-600 dark:text-blue-400 mb-2 block">
+            BUILT LIKE WE MEAN IT
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Engineered for High-Signal Job Seekers
           </h2>
+          <p className="text-sm sm:text-base text-slate-600 dark:text-slate-400 mt-3">
+            Every component is crafted for speed, focus, and clarity. No bloatware, no fluff.
+          </p>
         </div>
 
-        {/* Specs Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {specs.map((item, idx) => (
-            <div 
-              key={idx}
-              className="p-5 rounded-lg bg-white dark:bg-[#121215] border border-zinc-200 dark:border-zinc-800 font-mono text-xs"
-            >
-              <div className="text-[10px] text-zinc-400 font-bold mb-2">
-                {item.code}
-              </div>
-              <h3 className="font-bold text-sm text-zinc-900 dark:text-zinc-100 mb-2">
-                {item.title}
-              </h3>
-              <p className="text-zinc-600 dark:text-zinc-400 font-sans leading-relaxed text-xs">
-                {item.desc}
-              </p>
-            </div>
-          ))}
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {features.map((feat, idx) => {
+            const IconComponent = feat.icon;
+            return (
+              <motion.div 
+                key={idx}
+                whileHover={{ y: -4, scale: 1.01 }}
+                className="group rounded-2xl p-6 glass-card shadow-sm hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-200 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:scale-110 transition-transform">
+                      <IconComponent className="w-5 h-5" />
+                    </div>
+                    <span className="font-mono text-[10px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded">
+                      {feat.tag}
+                    </span>
+                  </div>
+
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    {feat.title}
+                  </h3>
+
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                    {feat.description}
+                  </p>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
       </div>

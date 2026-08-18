@@ -3,44 +3,70 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --bg-base: #fafafa;
-    --bg-surface: #ffffff;
-    --border-color: #e4e4e7;
-    --text-main: #09090b;
-    --text-muted: #71717a;
-  }
-
-  .dark {
-    --bg-base: #09090b;
-    --bg-surface: #121215;
-    --border-color: #27272a;
-    --text-main: #f4f4f5;
-    --text-muted: #a1a1aa;
-  }
-
   body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    background-color: var(--bg-base);
-    color: var(--text-main);
     overflow-x: hidden;
-    letter-spacing: -0.01em;
   }
 }
 
-/* Custom crisp border utilities */
-.border-subtle {
-  border-color: var(--border-color);
+/* Glassmorphic Cards & Panels */
+.glass-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
 }
 
-.bg-surface {
-  background-color: var(--bg-surface);
+.dark .glass-card {
+  background: rgba(17, 22, 34, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card-hover {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -10px rgba(59, 130, 246, 0.25);
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+/* Glowing background mesh pattern */
+.bg-mesh-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.08) 1px, transparent 1px);
+}
+
+.dark .bg-mesh-pattern {
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.12) 1px, transparent 1px);
+}
+
+/* Signal pulse keyframes */
+@keyframes ring-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
+
+.animate-ring-pulse {
+  animation: ring-pulse 2s infinite;
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -48,19 +74,14 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #a1a1aa33;
-  border-radius: 4px;
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 9999px;
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: #27272a;
+  background: rgba(51, 65, 85, 0.5);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #71717a66;
-}
-
-/* Monospace font utility */
-.font-mono-code {
-  font-family: 'JetBrains Mono', monospace;
+  background: rgba(59, 130, 246, 0.6);
 }
