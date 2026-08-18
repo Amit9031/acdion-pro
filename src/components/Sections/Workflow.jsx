@@ -23,15 +23,15 @@ export default function Workflow() {
   ];
 
   return (
-    <section ref={ref} className="py-16 md:py-24 border-b border-[#E8E5DA] dark:border-[#282A30]">
-      <div className={`max-w-6xl mx-auto px-4 sm:px-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+    <section ref={ref} className="py-16 md:py-24 border-b border-[#28282D]">
+      <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         
         {/* Header */}
         <div className="max-w-xl mb-12">
-          <span className="font-mono text-xs font-bold uppercase tracking-widest text-terracotta-500 mb-2 block">
+          <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#CCFF00] mb-2 block">
             DAILY HABIT
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#18181B] dark:text-[#F4F2EB] tracking-tight">
+          <h2 className="font-syne text-3xl sm:text-4xl font-extrabold text-white tracking-tight uppercase">
             3 Steps to Execution Clarity
           </h2>
         </div>
@@ -41,15 +41,15 @@ export default function Workflow() {
           {steps.map((step, idx) => (
             <div 
               key={idx}
-              className="p-6 rounded-2xl paper-card"
+              className="p-6 rounded-2xl aww-card"
             >
-              <div className="text-3xl font-serif italic text-terracotta-500 font-bold mb-3">
+              <div className="text-3xl font-syne font-bold text-[#CCFF00] mb-3">
                 {step.num}
               </div>
-              <h3 className="font-serif font-bold text-lg text-[#18181B] dark:text-[#F4F2EB] mb-2">
+              <h3 className="font-syne font-bold text-lg text-white mb-2">
                 {step.title}
               </h3>
-              <p className="text-xs text-zinc-600 dark:text-zinc-400 font-sans leading-relaxed">
+              <p className="text-xs text-zinc-400 font-sans leading-relaxed">
                 {step.desc}
               </p>
             </div>

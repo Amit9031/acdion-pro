@@ -38,15 +38,15 @@ export default function Features() {
   ];
 
   return (
-    <section id="features" ref={ref} className="py-16 md:py-24 border-b border-[#E8E5DA] dark:border-[#282A30] bg-[#FAF9F5] dark:bg-[#111215]">
-      <div className={`max-w-6xl mx-auto px-4 sm:px-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+    <section id="features" ref={ref} className="py-16 md:py-24 border-b border-[#28282D] bg-[#0D0D0E]">
+      <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
         
         {/* Header */}
         <div className="max-w-xl mb-12">
-          <span className="font-mono text-xs font-bold uppercase tracking-widest text-terracotta-500 mb-2 block">
-            TECHNICAL DOSSIER
+          <span className="font-mono text-xs font-bold uppercase tracking-widest text-[#CCFF00] mb-2 block">
+            TECHNICAL SPECIFICATIONS
           </span>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#18181B] dark:text-[#F4F2EB] tracking-tight">
+          <h2 className="font-syne text-3xl sm:text-4xl font-extrabold text-white tracking-tight uppercase">
             Engineered Specifications
           </h2>
         </div>
@@ -56,15 +56,15 @@ export default function Features() {
           {specs.map((item, idx) => (
             <div 
               key={idx}
-              className="p-5 rounded-xl paper-card font-mono text-xs"
+              className="p-5 rounded-2xl aww-card font-mono text-xs"
             >
-              <div className="text-[10px] text-terracotta-500 font-bold mb-2">
+              <div className="text-[10px] text-[#CCFF00] font-bold mb-2">
                 {item.code}
               </div>
-              <h3 className="font-serif font-bold text-lg text-[#18181B] dark:text-[#F4F2EB] mb-1">
+              <h3 className="font-syne font-bold text-base text-white mb-1">
                 {item.title}
               </h3>
-              <p className="text-zinc-600 dark:text-zinc-400 font-sans leading-relaxed text-xs">
+              <p className="text-zinc-400 font-sans leading-relaxed text-xs">
                 {item.desc}
               </p>
             </div>

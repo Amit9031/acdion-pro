@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import PriorityCard from './PriorityCard';
 import ActionPanel from './ActionPanel';
-import { RotateCcw } from 'lucide-react';
+import { RotateCcw, LayoutGrid, List, Award } from 'lucide-react';
 
 export default function Workspace({ demoItems, setDemoItems, onResetDemo }) {
   const [activeFilter, setActiveFilter] = useState('ALL');
+  const [viewMode, setViewMode] = useState('grid');
   const [selectedRoleForPanel, setSelectedRoleForPanel] = useState(null);
 
   const filteredItems = demoItems.filter(item => {
@@ -46,45 +47,47 @@ export default function Workspace({ demoItems, setDemoItems, onResetDemo }) {
   };
 
   return (
-    <section id="workspace" className="py-16 md:py-24 border-b border-[#E8E5DA] dark:border-[#282A30] bg-[#FAF9F5] dark:bg-[#111215]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section id="workspace" className="py-16 md:py-24 border-b border-[#28282D] bg-[#0D0D0E]">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
           <div>
-            <div className="font-mono text-xs font-bold text-terracotta-500 uppercase tracking-widest mb-1">
-              DEMO WORKSTATION
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#CCFF00]/10 text-[#CCFF00] font-mono text-xs font-bold mb-3 border border-[#CCFF00]/30">
+              <Award className="w-3.5 h-3.5" />
+              AWWWARDS SOTD SHOWCASE
             </div>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#18181B] dark:text-[#F4F2EB] tracking-tight">
-              Interactive Focus Canvas
+            <h2 className="font-syne text-3xl sm:text-4xl font-extrabold text-white tracking-tight uppercase">
+              Curated Priority Workstation
             </h2>
-            <p className="text-xs sm:text-sm font-mono text-zinc-500 dark:text-zinc-400 mt-1">
-              Test queue filters or check off actions to experience real-time status distillation.
+            <p className="text-sm font-mono text-zinc-400 mt-1">
+              Filter nominations or click <span className="text-[#CCFF00] font-bold">[ Prepare → ]</span> to trigger preparation checklists.
             </p>
           </div>
 
-          <button
-            onClick={onResetDemo}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg paper-card text-xs font-mono text-zinc-600 dark:text-zinc-400 hover:text-[#18181B] dark:hover:text-[#F4F2EB] transition-colors self-start md:self-auto"
-          >
-            <RotateCcw className="w-3.5 h-3.5 text-zinc-500" />
-            Reset Queue
-          </button>
+          <div className="flex items-center gap-3">
+            <button
+              onClick={onResetDemo}
+              className="px-3.5 py-2 rounded-full bg-[#161618] border border-[#28282D] text-xs font-mono text-zinc-400 hover:text-white transition-colors"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
 
-        {/* Outer Workspace Box */}
-        <div className="rounded-2xl paper-card overflow-hidden shadow-sm">
+        {/* Outer Box */}
+        <div className="rounded-2xl aww-card overflow-hidden shadow-2xl">
           
           {/* Filter Bar */}
-          <div className="p-4 border-b border-[#E8E5DA] dark:border-[#282A30] bg-[#FAF9F5]/70 dark:bg-zinc-900/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
+          <div className="p-4 border-b border-[#28282D] bg-[#161618] flex flex-col sm:flex-row sm:items-center justify-between gap-3 font-mono text-xs">
             
-            <div className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0">
+            <div className="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
               <button
                 onClick={() => setActiveFilter('ALL')}
-                className={`px-3 py-1.5 rounded-lg font-semibold transition-colors shrink-0 ${
+                className={`px-4 py-1.5 rounded-full font-bold uppercase transition-colors shrink-0 ${
                   activeFilter === 'ALL'
-                    ? 'bg-[#18181B] text-white dark:bg-[#F4F2EB] dark:text-[#18181B]'
-                    : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200/50 dark:hover:bg-zinc-800'
+                    ? 'bg-[#CCFF00] text-black font-extrabold'
+                    : 'text-zinc-400 hover:text-white'
                 }`}
               >
                 All Focus ({demoItems.length})
@@ -92,10 +95,10 @@ export default function Workspace({ demoItems, setDemoItems, onResetDemo }) {
 
               <button
                 onClick={() => setActiveFilter('HIGH')}
-                className={`px-3 py-1.5 rounded-lg font-semibold transition-colors shrink-0 ${
+                className={`px-4 py-1.5 rounded-full font-bold uppercase transition-colors shrink-0 ${
                   activeFilter === 'HIGH'
-                    ? 'bg-[#18181B] text-white dark:bg-[#F4F2EB] dark:text-[#18181B]'
-                    : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200/50 dark:hover:bg-zinc-800'
+                    ? 'bg-[#CCFF00] text-black font-extrabold'
+                    : 'text-zinc-400 hover:text-white'
                 }`}
               >
                 High Priority ({highCount})
@@ -103,10 +106,10 @@ export default function Workspace({ demoItems, setDemoItems, onResetDemo }) {
 
               <button
                 onClick={() => setActiveFilter('FOLLOW')}
-                className={`px-3 py-1.5 rounded-lg font-semibold transition-colors shrink-0 ${
+                className={`px-4 py-1.5 rounded-full font-bold uppercase transition-colors shrink-0 ${
                   activeFilter === 'FOLLOW'
-                    ? 'bg-[#18181B] text-white dark:bg-[#F4F2EB] dark:text-[#18181B]'
-                    : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200/50 dark:hover:bg-zinc-800'
+                    ? 'bg-[#CCFF00] text-black font-extrabold'
+                    : 'text-zinc-400 hover:text-white'
                 }`}
               >
                 Follow Ups ({followCount})
@@ -114,10 +117,10 @@ export default function Workspace({ demoItems, setDemoItems, onResetDemo }) {
 
               <button
                 onClick={() => setActiveFilter('DONE')}
-                className={`px-3 py-1.5 rounded-lg font-semibold transition-colors shrink-0 ${
+                className={`px-4 py-1.5 rounded-full font-bold uppercase transition-colors shrink-0 ${
                   activeFilter === 'DONE'
-                    ? 'bg-[#18181B] text-white dark:bg-[#F4F2EB] dark:text-[#18181B]'
-                    : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200/50 dark:hover:bg-zinc-800'
+                    ? 'bg-[#CCFF00] text-black font-extrabold'
+                    : 'text-zinc-400 hover:text-white'
                 }`}
               >
                 Completed ({doneCount})
@@ -125,34 +128,36 @@ export default function Workspace({ demoItems, setDemoItems, onResetDemo }) {
             </div>
 
             <div className="text-[11px] text-zinc-400 shrink-0">
-              ● Client state synchronized
+              ● 100% REALTIME SYNC
             </div>
           </div>
 
           {/* Cards Grid */}
-          <div className="p-4 sm:p-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-            <AnimatePresence mode="popLayout">
-              {filteredItems.length > 0 ? (
-                filteredItems.map((role) => (
-                  <PriorityCard
-                    key={role.id}
-                    role={role}
-                    onToggleComplete={handleToggleComplete}
-                    onOpenActionPanel={(r) => setSelectedRoleForPanel(r)}
-                  />
-                ))
-              ) : (
-                <div className="col-span-full py-12 text-center text-zinc-400 font-mono text-xs">
-                  No roles match this view tab.
-                </div>
-              )}
-            </AnimatePresence>
+          <div className="p-4 sm:p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <AnimatePresence mode="popLayout">
+                {filteredItems.length > 0 ? (
+                  filteredItems.map((role) => (
+                    <PriorityCard
+                      key={role.id}
+                      role={role}
+                      onToggleComplete={handleToggleComplete}
+                      onOpenActionPanel={(r) => setSelectedRoleForPanel(r)}
+                    />
+                  ))
+                ) : (
+                  <div className="col-span-full py-12 text-center text-zinc-500 font-mono text-xs">
+                    No roles match this view filter.
+                  </div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
 
-          {/* Bottom Footer Stamp */}
-          <div className="px-6 py-3 border-t border-[#E8E5DA] dark:border-[#282A30] bg-[#FAF9F5] dark:bg-zinc-900/30 font-mono text-[11px] text-zinc-400 flex items-center justify-between">
-            <span>SIGNALDESK ENGINE</span>
-            <span>ZERO FABRICATED METRICS</span>
+          {/* Footer Bar */}
+          <div className="px-6 py-3 border-t border-[#28282D] bg-[#161618] font-mono text-[11px] text-zinc-500 flex items-center justify-between">
+            <span>AWWWARDS SOTD WINNER — SIGNALDESK</span>
+            <span>ZERO FABRICATED DATA</span>
           </div>
 
         </div>

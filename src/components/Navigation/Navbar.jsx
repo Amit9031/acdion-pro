@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Sun, Moon, ArrowUpRight } from 'lucide-react';
+import { Search, ChevronDown } from 'lucide-react';
 
-export default function Navbar({ darkMode, setDarkMode, onTriggerEasterEgg }) {
+export default function Navbar({ 
+  onOpenSearch, 
+  onOpenLogin, 
+  onOpenSignup, 
+  onOpenPro, 
+  onOpenSubmit, 
+  onOpenAcademy,
+  onTriggerEasterEgg 
+}) {
   const [logoClicks, setLogoClicks] = useState(0);
 
   const handleLogoClick = () => {
@@ -22,76 +29,89 @@ export default function Navbar({ darkMode, setDarkMode, onTriggerEasterEgg }) {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-[#FAF9F5]/90 dark:bg-[#121316]/90 backdrop-blur-md border-b border-[#E8E5DA] dark:border-[#282A30] transition-colors">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+    <header className="sticky top-0 z-50 w-full bg-[#FAFAFA] border-b border-[#E2E2E2] text-[#111111] transition-colors">
+      <div className="max-w-[1500px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
         
-        {/* Editorial Brand Logo */}
-        <button 
-          onClick={handleLogoClick}
-          className="flex items-center gap-3 text-left focus:outline-none group"
-          title="Click 4 times to unlock Developer Console"
-        >
-          <div className="w-8 h-8 rounded-lg bg-terracotta-500 text-white font-mono font-bold text-xs flex items-center justify-center shadow-sm group-hover:bg-terracotta-600 transition-colors">
-            SD
+        {/* Left: W. Logo + Nav Links */}
+        <div className="flex items-center gap-6">
+          <button 
+            onClick={handleLogoClick}
+            className="font-bold text-2xl tracking-tighter text-black focus:outline-none"
+            title="Click 4 times to unlock Developer Console"
+          >
+            W.
+          </button>
+
+          <nav className="hidden lg:flex items-center gap-5 text-xs font-semibold text-[#111111]">
+            <button 
+              onClick={() => scrollToSection('problem')} 
+              className="flex items-center gap-1 hover:text-neutral-600 transition-colors"
+            >
+              Explore <ChevronDown className="w-3.5 h-3.5" />
+            </button>
+            <button 
+              onClick={() => scrollToSection('workspace')} 
+              className="hover:text-neutral-600 transition-colors"
+            >
+              Directory
+            </button>
+            <button 
+              onClick={onOpenAcademy} 
+              className="flex items-center gap-1 hover:text-neutral-600 transition-colors"
+            >
+              Academy <span className="px-1.5 py-0.5 text-[9px] font-bold bg-[#111111] text-white rounded">New</span>
+            </button>
+            <button 
+              onClick={() => scrollToSection('workspace')} 
+              className="hover:text-neutral-600 transition-colors"
+            >
+              Jobs
+            </button>
+            <button 
+              onClick={() => scrollToSection('decisions')} 
+              className="hover:text-neutral-600 transition-colors"
+            >
+              Market
+            </button>
+          </nav>
+        </div>
+
+        {/* Center: Search Input */}
+        <div className="flex-1 max-w-md hidden md:block">
+          <div className="relative flex items-center cursor-pointer" onClick={onOpenSearch}>
+            <Search className="w-4 h-4 text-neutral-500 absolute left-3.5 pointer-events-none" />
+            <input
+              type="text"
+              readOnly
+              placeholder="Search by Inspiration"
+              className="w-full pl-10 pr-4 py-2 rounded-lg bg-[#EAEAEA] border-none text-xs font-medium text-[#111111] placeholder-neutral-500 focus:outline-none cursor-pointer hover:bg-[#E2E2E2] transition-colors"
+            />
           </div>
-          <div className="flex flex-col">
-            <span className="font-serif text-xl font-bold tracking-tight text-[#18181B] dark:text-[#F4F2EB] leading-none flex items-center gap-2">
-              SignalDesk
-              <span className="font-mono text-[9px] font-bold uppercase tracking-widest px-1.5 py-0.5 rounded bg-terracotta-500/10 text-terracotta-600 dark:text-terracotta-500 border border-terracotta-500/20">
-                v2.4
-              </span>
-            </span>
-            <span className="font-mono text-[10px] text-zinc-500 dark:text-zinc-400 mt-0.5">
-              Prescriptive Focus Queue
-            </span>
-          </div>
-        </button>
+        </div>
 
-        {/* Links */}
-        <nav className="hidden md:flex items-center gap-8 font-mono text-xs text-zinc-600 dark:text-zinc-400">
-          <button 
-            onClick={() => scrollToSection('problem')} 
-            className="hover:text-terracotta-500 dark:hover:text-white transition-colors"
-          >
-            Why SignalDesk
+        {/* Right Controls */}
+        <div className="flex items-center gap-4 text-xs font-semibold">
+          <button onClick={onOpenLogin} className="hover:text-neutral-600 transition-colors hidden sm:inline">
+            Log in
           </button>
-          <button 
-            onClick={() => scrollToSection('workspace')} 
-            className="hover:text-terracotta-500 dark:hover:text-white transition-colors"
-          >
-            Workspace Demo
+          <button onClick={onOpenSignup} className="hover:text-neutral-600 transition-colors hidden sm:inline">
+            Sign Up
           </button>
-          <button 
-            onClick={() => scrollToSection('features')} 
-            className="hover:text-terracotta-500 dark:hover:text-white transition-colors"
-          >
-            Architecture Specs
-          </button>
-          <button 
-            onClick={() => scrollToSection('decisions')} 
-            className="hover:text-terracotta-500 dark:hover:text-white transition-colors font-bold text-terracotta-500"
-          >
-            DECISIONS.md
-          </button>
-        </nav>
 
-        {/* Action controls */}
-        <div className="flex items-center gap-3">
-          <motion.button
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setDarkMode(!darkMode)}
-            className="p-2 rounded-lg paper-badge hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors"
-            aria-label="Toggle Theme"
+          {/* Dark Pill "Be Pro" */}
+          <button 
+            onClick={onOpenPro}
+            className="px-4 py-2 rounded-lg bg-[#222222] text-white font-bold hover:bg-black transition-colors"
           >
-            {darkMode ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-zinc-700" />}
-          </motion.button>
+            Be Pro
+          </button>
 
-          <button
-            onClick={() => scrollToSection('workspace')}
-            className="px-4 py-2 rounded-lg bg-[#18181B] dark:bg-[#F4F2EB] text-white dark:text-[#18181B] font-mono text-xs font-semibold hover:bg-terracotta-500 dark:hover:bg-terracotta-500 dark:hover:text-white transition-colors flex items-center gap-1.5"
+          {/* Border Pill "Submit Website" */}
+          <button 
+            onClick={onOpenSubmit}
+            className="px-4 py-2 rounded-lg bg-[#EAEAEA] border border-[#D5D5D5] text-[#111111] font-bold hover:bg-[#E2E2E2] transition-colors"
           >
-            <span>Launch Canvas</span>
-            <ArrowUpRight className="w-3.5 h-3.5" />
+            Submit Website
           </button>
         </div>
 

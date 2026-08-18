@@ -1,4 +1,5 @@
 import React from 'react';
+import { Award, Terminal } from 'lucide-react';
 
 export default function Footer({ easterEggUnlocked, onTriggerEasterEgg }) {
   const scrollToTop = () => {
@@ -6,28 +7,29 @@ export default function Footer({ easterEggUnlocked, onTriggerEasterEgg }) {
   };
 
   return (
-    <footer className="bg-[#121316] text-zinc-400 border-t border-zinc-800 text-xs font-mono">
+    <footer className="bg-[#0D0D0E] text-zinc-400 border-t border-[#28282D] text-xs font-mono">
       
       {/* DECISIONS.md Preview */}
-      <div id="decisions" className="max-w-6xl mx-auto px-4 sm:px-6 py-12 border-b border-zinc-800">
-        <div className="rounded-2xl bg-[#18191E] border border-zinc-800 p-6 sm:p-8">
-          <div className="flex items-center justify-between border-b border-zinc-800 pb-3 mb-6">
-            <div className="font-serif font-bold text-white text-base">
+      <div id="decisions" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-b border-[#28282D]">
+        <div className="rounded-2xl aww-card p-6 sm:p-8">
+          <div className="flex items-center justify-between border-b border-[#28282D] pb-3 mb-6">
+            <div className="font-syne font-bold text-white text-base flex items-center gap-2">
+              <Award className="w-4 h-4 text-[#CCFF00]" />
               DECISIONS.md — Written Rationale & Architecture
             </div>
-            <span className="text-[10px] uppercase bg-terracotta-500/20 text-terracotta-500 font-bold px-2.5 py-0.5 rounded border border-terracotta-500/30">
+            <span className="text-[10px] uppercase bg-[#CCFF00] text-black font-extrabold px-2.5 py-0.5 rounded">
               1-PAGE MAX
             </span>
           </div>
 
-          <div className="space-y-6 text-zinc-400 text-xs leading-relaxed font-sans">
+          <div className="space-y-6 text-zinc-300 text-xs leading-relaxed font-sans">
             
             {/* Q1 */}
             <div>
               <h4 className="font-mono font-bold text-white mb-1 text-xs">
                 1. Why this ingestion strategy over the obvious alternative you rejected?
               </h4>
-              <p className="pl-3 border-l border-terracotta-500 text-zinc-400">
+              <p className="pl-3 border-l-2 border-[#CCFF00] text-zinc-400">
                 We prioritized a <strong>decoupled queue with user-agent header randomization and structured RSS/API payload normalization</strong> over launching direct headless Puppeteer browser clusters. Direct browser scraping against platforms like LinkedIn/Indeed carries severe fingerprint risk (TLS JA3 fingerprinting, Canvas/WebGL entropy detection, IP rate-walling) and violates ToS. Our strategy uses lightweight endpoint ingestion with exponential retry backoff and local DOM/JSON parsing, ensuring zero account burn risk and sustainable client health.
               </p>
             </div>
@@ -37,7 +39,7 @@ export default function Footer({ easterEggUnlocked, onTriggerEasterEgg }) {
               <h4 className="font-mono font-bold text-white mb-1 text-xs">
                 2. One trade-off made under the time limit, and what you'd do with a real week?
               </h4>
-              <p className="pl-3 border-l border-terracotta-500 text-zinc-400">
+              <p className="pl-3 border-l-2 border-[#CCFF00] text-zinc-400">
                 <strong>Trade-off:</strong> Client-side state persistence vs multi-tenant backend DB sync. Under the prompt's focus on frontend craft and immediate responsiveness, candidate data state is stored in React memory with optimistic state handlers instead of a live WebSockets server.<br />
                 <strong>With a real week:</strong> We would ship a serverless SQLite/D1 edge database with WebSockets real-time multi-device sync, OAuth calendar integration (Google Calendar/Outlook auto-syncing interview stages), and automated email parser webhooks for inbound recruiter responses.
               </p>
@@ -48,7 +50,7 @@ export default function Footer({ easterEggUnlocked, onTriggerEasterEgg }) {
               <h4 className="font-mono font-bold text-white mb-1 text-xs">
                 3. Where did you use AI tools, and what did you personally verify or change afterward?
               </h4>
-              <p className="pl-3 border-l border-terracotta-500 text-zinc-400">
+              <p className="pl-3 border-l-2 border-[#CCFF00] text-zinc-400">
                 <strong>AI Usage:</strong> Leveraged AI for scaffolding component architecture schemas, generating realistic candidate state mocks in <code className="text-zinc-200">demoData.js</code>, and styling Tailwind color system tokens.<br />
                 <strong>Manual Verifications:</strong> Manually verified viewport responsiveness across exact breakpoint thresholds (390px mobile, 1440px desktop), audited all dark-mode contrast ratios to meet WCAG AA standards, ensured zero fake testimonials or invented client logos were introduced, and engineered custom micro-interactions (Konami code listener & focus queue state transitions).
               </p>
@@ -59,10 +61,10 @@ export default function Footer({ easterEggUnlocked, onTriggerEasterEgg }) {
       </div>
 
       {/* Footer bar */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <span className="font-serif font-bold text-white text-sm">SignalDesk</span>
-          <span className="text-zinc-600">|</span>
+          <span className="font-syne font-extrabold text-white text-sm">SignalDesk</span>
+          <span className="text-zinc-700">|</span>
           <span className="text-zinc-500 text-[11px]">Acdyon Technologies Engineering Challenge</span>
         </div>
 

@@ -7,33 +7,33 @@ export default function FocusCard({ demoItems, onSelectTask }) {
   const completedCount = demoItems.filter(item => item.completed).length;
 
   return (
-    <div className="w-full max-w-md rounded-2xl paper-card p-6 shadow-sm relative font-sans">
-      {/* Accent Stamp */}
-      <div className="flex items-center justify-between border-b border-[#E8E5DA] dark:border-[#282A30] pb-3.5 mb-4 font-mono text-xs">
+    <div className="w-full max-w-md rounded-2xl bg-[#161618] border border-white/10 p-5 text-white font-sans shadow-xl">
+      {/* Header */}
+      <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-4 font-mono text-xs">
         <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-terracotta-500" />
-          <span className="font-bold text-[#18181B] dark:text-[#F4F2EB] uppercase tracking-wider text-[11px]">
-            FOCUS QUEUE
+          <span className="w-2.5 h-2.5 rounded-full bg-[#CCFF00]" />
+          <span className="font-bold uppercase tracking-wider text-[11px] text-zinc-300">
+            TODAY QUEUE
           </span>
         </div>
-        <span className="text-zinc-500 dark:text-zinc-400 text-[11px]">
+        <span className="px-2 py-0.5 rounded bg-[#CCFF00] text-black font-bold text-[11px]">
           {pendingItems.length} PENDING
         </span>
       </div>
 
-      {/* Title */}
+      {/* Headline */}
       <div className="mb-4">
-        <h3 className="font-serif text-2xl font-bold text-[#18181B] dark:text-[#F4F2EB]">
-          {pendingItems.length > 0 ? `${pendingItems.length} actions worth your time today` : 'Queue cleared!'}
+        <h3 className="text-lg font-extrabold text-white">
+          {pendingItems.length > 0 ? `${pendingItems.length} actions worth your time` : 'Queue cleared!'}
         </h3>
-        <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1 font-mono">
+        <p className="text-xs text-zinc-400 mt-0.5">
           {completedCount > 0 
             ? `${completedCount} action${completedCount === 1 ? '' : 's'} completed today.`
-            : 'Prioritized automatically by interview deadline and idle response days.'}
+            : 'Prioritized automatically by stage timeline.'}
         </p>
       </div>
 
-      {/* Task Rows */}
+      {/* Task Queue Rows */}
       <div className="space-y-2.5">
         <AnimatePresence>
           {demoItems.slice(0, 3).map((item) => {
@@ -48,33 +48,33 @@ export default function FocusCard({ demoItems, onSelectTask }) {
                 whileHover={{ scale: 1.01, x: 2 }}
                 whileTap={{ scale: 0.99 }}
                 onClick={() => onSelectTask(item)}
-                className={`group flex items-center justify-between p-3.5 rounded-xl border text-xs transition-colors cursor-pointer ${
+                className={`group flex items-center justify-between p-3 rounded-xl border text-xs transition-colors cursor-pointer ${
                   isDone 
-                    ? 'bg-zinc-100/50 dark:bg-zinc-900/40 border-[#E8E5DA] dark:border-[#282A30] text-zinc-400 dark:text-zinc-500 line-through'
+                    ? 'bg-white/5 border-white/5 text-zinc-500 line-through'
                     : item.priorityType === 'high'
-                    ? 'bg-[#FAF9F5] dark:bg-[#1E2026] border-terracotta-500/40 text-[#18181B] dark:text-[#F4F2EB]'
-                    : 'bg-[#FAF9F5]/60 dark:bg-[#18191E] border-[#E8E5DA] dark:border-[#282A30] text-[#18181B] dark:text-[#F4F2EB]'
+                    ? 'bg-[#CCFF00]/10 border-[#CCFF00]/30 text-white'
+                    : 'bg-[#222222] border-white/10 text-zinc-200 hover:border-zinc-500'
                 }`}
               >
-                <div className="flex items-center gap-3 min-w-0">
+                <div className="flex items-center gap-3 min-w-0 font-mono">
                   {isDone ? (
-                    <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+                    <CheckCircle2 className="w-4 h-4 text-[#CCFF00] shrink-0" />
                   ) : (
-                    <Circle className="w-4 h-4 text-terracotta-500 shrink-0" />
+                    <Circle className="w-4 h-4 text-[#CCFF00] shrink-0" />
                   )}
                   <div className="min-w-0">
-                    <div className="font-semibold text-xs truncate">
-                      <span className="font-bold">{item.company}</span>
-                      <span className="mx-1 text-zinc-400">•</span>
-                      <span>{item.title}</span>
+                    <div className="font-bold text-xs truncate">
+                      <span className="text-white">{item.company}</span>
+                      <span className="mx-1 text-zinc-500">•</span>
+                      <span className="text-zinc-300 font-sans">{item.title}</span>
                     </div>
-                    <div className="text-[11px] text-zinc-500 dark:text-zinc-400 font-mono truncate mt-0.5">
+                    <div className="text-[11px] text-zinc-400 truncate mt-0.5">
                       → {item.nextAction}
                     </div>
                   </div>
                 </div>
 
-                <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:text-terracotta-500 transition-colors shrink-0 ml-2" />
+                <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:text-[#CCFF00] transition-colors shrink-0 ml-2" />
               </motion.div>
             );
           })}
@@ -82,16 +82,16 @@ export default function FocusCard({ demoItems, onSelectTask }) {
       </div>
 
       {/* Footer */}
-      <div className="mt-4 pt-3 border-t border-[#E8E5DA] dark:border-[#282A30] flex items-center justify-between text-xs font-mono text-zinc-500">
-        <span>Click card to launch workspace</span>
+      <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-zinc-400">
+        <span>Click card to test action</span>
         <button 
           onClick={() => {
             const el = document.getElementById('workspace');
             if (el) el.scrollIntoView({ behavior: 'smooth' });
           }}
-          className="text-terracotta-500 font-bold hover:underline"
+          className="text-[#CCFF00] font-bold hover:underline"
         >
-          Full Workstation ↓
+          Full Canvas ↓
         </button>
       </div>
     </div>
